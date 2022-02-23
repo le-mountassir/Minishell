@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 21:33:40 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/23 15:53:00 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:23:03 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		handle_rl_input(t_vars   *unit); //-->
 char		*rm_space(t_vars *unit);
 
 //-----------------------------------------------------> commands
-int    ft_exit(t_vars	*unit);
+int    ft_exit(t_vars	*unit); // done || literally just exit dial c no need to use kill
 int    ft_cd(t_vars *unit);
 int    ft_unset(t_vars *unit);
 int    ft_pwd(t_vars *unit);
