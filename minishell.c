@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 21:33:26 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/23 14:43:56 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/24 10:47:59 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sigs_listener(int sig)
 	}
 }
 
-int main(int c, char **v, char **envir)
+int main(int c, char ** v, char **envir)
 {
 	t_vars	unit;
 
