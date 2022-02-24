@@ -6,24 +6,25 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 22:39:33 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/23 14:46:00 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/24 09:12:29 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
 
-// void	ft_pipes(t_vars *unit)
+// void	pipes_parsing(t_vars *unit)
 // {
 // 	char **commands;
 
-// 	commands = ft_split(unit->rl_return, '|');
-// }
+// ');
+// // }// 	commands = ft_split(unit->rl_return, '|
 
 void	handle_rl_input(t_vars   *unit)
 {
 	int check = 1;
 	int i = 0;
+	char **command;
 
 	unit->rl_return = rm_space(unit);
 
@@ -32,7 +33,7 @@ void	handle_rl_input(t_vars   *unit)
 	{
 		if (unit->rl_return[i] == '|')
 		{
-			// ft_pipes(unit);
+			// pipes_parsing(unit);
 			check = 0;
 		}
 		i++;
@@ -40,6 +41,9 @@ void	handle_rl_input(t_vars   *unit)
 	// if there is no pipe it means that there is only 1 command to handle
 	if (check)
 	{
-		exec_cmd(unit, NULL, unit->env);
+		command = ft_split(unit->rl_return, ' '); // we split the user input  [0 = ls] [1 = -la] ...
+		if (!command[0])
+			return ;
+		exec_cmd(unit, command);
 	}
 }
