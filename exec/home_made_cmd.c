@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:59:11 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/23 17:00:47 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/24 09:20:40 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 // checks if the user input is one of the commands that we builed 
 // than it call the implementation of that command
+
+
+// returns 1 if one of our functions were called
 
 int    cmp_with_homemade(char **cmd, t_vars *unit)
 {

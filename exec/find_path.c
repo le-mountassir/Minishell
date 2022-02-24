@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_bin_path.c                                    :+:      :+:    :+:   */
+/*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:54:40 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/23 16:59:50 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/24 10:55:03 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*find_path(char *command)
 	paths = ft_split(getenv("PATH"), ':'); 
 	// ^ : splits the PATH var into multiple paths so we can check if that command exist in one of them
 	
-    cmd = ft_strjoin("/", command); // joins the user input with a '/' so we can join is here with one of the paths and check if that cmd exist in the path[i]
+    cmd = ft_strjoin("/", command); // joins the user input with a '/' so we can join it here with one of the paths and check if that cmd exist in the path[i]
     while (*paths) //																	  |
     {			//						strjoin  		paths[0] = /bin  cmd = /ls	      |
         path = ft_strjoin(*paths, cmd);// 	 <============================================| path = /bin/ls
