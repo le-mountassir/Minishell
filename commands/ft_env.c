@@ -6,12 +6,14 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 22:36:39 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/23 14:53:39 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:40:12 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
+
+// done
 
 int    ft_env(t_vars *unit)
 {

@@ -6,12 +6,14 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:18:24 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/23 16:05:16 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:41:23 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
+
+// done 
 
 void	env_var(char **command)
 {
