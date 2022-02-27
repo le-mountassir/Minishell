@@ -6,7 +6,7 @@
 #    By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/18 21:31:37 by ahel-mou          #+#    #+#              #
-#    Updated: 2022/02/23 17:03:15 by ahel-mou         ###   ########.fr        #
+#    Updated: 2022/02/27 16:36:56 by ahel-mou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC_mini = minishell.c\
 			./exec/exec_cmds.c\
 			./exec/find_path.c\
 			./exec/home_made_cmd.c\
-
+			./exec/free_mem.c\
+			./exec/pipex.c\
 #----------------------------------> Parsing
 SRC_parser = ./parsing/handle_input.c\
 				./parsing/parsing_utils.c
@@ -27,6 +28,7 @@ SRC_parser = ./parsing/handle_input.c\
 #----------------------------------> commands src files
 SRC_commands = ./commands/ft_cd.c\
 				./commands/ft_echo.c\
+				./commands/ft_echo_utils.c\
 				./commands/ft_env.c\
 				./commands/ft_pwd.c\
 				./commands/ft_exit.c\
