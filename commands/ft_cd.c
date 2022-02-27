@@ -6,18 +6,22 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 22:37:06 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/24 09:17:00 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/25 17:36:30 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
 
-// loading ...
-
-int    ft_cd(t_vars *unit)
+// done
+int	ft_cd(char **path)
 {
-	// char dir[100];
-	// printf("PWD: %s\n", getcwd(dir, 100));
+	int	i;
+
+	i = 0;
+	while (path[i])
+		i++;
+	if (--i == 1)
+		chdir(path[i]);
 	return (1);
 }

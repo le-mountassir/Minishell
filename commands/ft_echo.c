@@ -6,29 +6,20 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 22:36:58 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/24 16:20:48 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/26 15:48:39 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
 
-// i think its done
+// loading ...
 
-void    white_spaces(char cara)
+int check_n(char *option)
 {
-    if (cara == 'n')
-        printf("\n");
-    else if (cara == 't')
-        printf("\t");
-    else if (cara == 'v')
-        printf("\v");
-    else if (cara == 'r')
-        printf("\r");
-    else if (cara == 'f')
-        printf("\f");
-    else if (cara == '\\')
-        printf("\\");
+    if (!ft_strcmp(option, "-n"))
+        return (1);
+    return (0);
 }
 
 int ft_echo(char **cmd)
@@ -36,29 +27,26 @@ int ft_echo(char **cmd)
     int i = 1;
     int j;
     int quotes = 0;
+    int checker = 0;
+    if (check_n(cmd[1]))
+        i = 2;
     while (cmd[i])
     {
         j = 0;
+        if (checker)
+            checker = 0;
         while (cmd[i][j])
         {
-            if (cmd[i][j] == '"' && quotes == 1)
-                printf("%c", cmd[j][i]);
-            else if (cmd[i][j] == '\'' && quotes == 2)
-                printf("%c", cmd[j][i]);
+                quotes_f_checker(&quotes, &checker, cmd[i][j]);
 
-            if(quotes && (cmd[i][j] == '"' || cmd[i][j] == '\''))
-                quotes = 0;
-            else if(cmd[i][j] == '\'')   
-                quotes = 1;
-            else if (cmd[i][j] == '"')
-                quotes = 2;
-            
-                
-            if(cmd[i][j] != '"' && cmd[i][j] != '\'' && cmd[i][j] != '\\')
-                printf("%c", cmd[i][j]);
+                if (quotes && (cmd[i][j] == '"' || cmd[i][j] == '\''))
+                    printf("%c", cmd[i][j]);
+                else if(cmd[i][j] != '"' && cmd[i][j] != '\'' && cmd[i][j] != '\\')
+                    printf("%c", cmd[i][j]);
 
-            if(quotes && cmd[i][j] == '\\')
-                white_spaces(cmd[i][++j]);
+                quotes_t_checker(&quotes, &checker, cmd[i][j]);
+                if(quotes && cmd[i][j] == '\\')
+                    white_spaces(cmd[i][++j]);
             j++;
         }
         i++;
@@ -66,7 +54,8 @@ int ft_echo(char **cmd)
             printf(" ");
     }
     // new line for the prompt
-    printf("\n");
+    if (!check_n(cmd[1]))
+        printf("\n");
     return (1);
 }
             // here we check if there is a quote or d_quotes if yes we change the value of the var
