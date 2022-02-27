@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 21:33:40 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/24 10:58:52 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/27 16:35:50 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,39 @@
 #include <dirent.h> //open dir | clode dir
 #include <readline/readline.h> // rl
 #include <readline/history.h> // rl
+#include <fcntl.h>
 
 typedef struct minishell
 {
 	char		*rl_return; //  user input
 	char		**env; 		// envirement variavle
-	char		**terminal;
-	char		*cd_path;
-	int			num_of_cmd;
+	char		**export;
 }				t_vars;
 
-//-----------------------------------------------------> Utils
+//----------------------------------------------------->Minishell Utils
 void		exec_cmd(t_vars *unit, char **cmd);
 char		*find_path(char *command);
 int			cmp_with_homemade(char **cmd, t_vars *unit);
-
+void		ft_free_td(char **td_arr);
+int			pipex(int num_of_cmds, char **commands, char **env);
 //-----------------------------------------------------> parasing utils
 void		handle_rl_input(t_vars   *unit); //--> 
-char		*rm_space(t_vars *unit);
+char		*rm_space(char *cmd);
 
 //-----------------------------------------------------> commands
-int		ft_exit(t_vars	*unit); // done || literally just exit dial c no need to use kill
-int		ft_cd(t_vars *unit);
 int		ft_unset(t_vars *unit);
-int		ft_pwd(t_vars *unit);
 int		ft_export(t_vars *unit);
-int		ft_env(t_vars *unit); // done || prints all the envirement variables
-int		ft_echo(char **cmd); //
-void	env_var(char **cmd); // done || prints the value of an envirement variable
+int		ft_cd(char **path);			// done
+int		ft_exit(t_vars	*unit); 	// done 
+int		ft_pwd(t_vars *unit);		// done
+int		ft_env(t_vars *unit); 		// done
+void	env_var(char **cmd);		// done
 
+//---------//->echo
+int		ft_echo(char **cmd); // loading
+void    quotes_f_checker(int *quotes, int *checker, char cara); //echo utils
+void    quotes_t_checker(int *quotes, int *checker, char cara); // echo utils
+void    white_spaces(char cara); //echo utils
+//---------//
 
 #endif
