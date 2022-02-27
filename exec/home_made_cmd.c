@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:59:11 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/24 09:20:40 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/25 15:10:50 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int    cmp_with_homemade(char **cmd, t_vars *unit)
         if (!ft_strcmp(cmd[i], "exit"))
             return (ft_exit(unit));
         else if (!ft_strcmp(cmd[i], "cd"))
-            return (ft_cd(unit));
+            return (ft_cd(cmd));
         else if (!ft_strcmp(cmd[i], "echo"))
             return (ft_echo(cmd));
         else if (!ft_strcmp(cmd[i], "env"))

@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:25:06 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/24 10:51:13 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/02/26 10:49:29 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	exec_cmd(t_vars *unit, char **command)
 	// if there is no '/' we compare the user's 1st argument with our homemade commands if it match's we execute it if not we call find_path
 	else if (!(cmp_with_homemade(command, unit)))
 		path = find_path(command[0]);
-		
 	if(!access(path,R_OK))
 	{
 		int fok = fork();
@@ -37,4 +36,5 @@ void	exec_cmd(t_vars *unit, char **command)
 			execve(path, command, unit->env);
 		waitpid(-1, 0, 0);
 	}
+	// freew(path);
 }
