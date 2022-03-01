@@ -6,16 +6,18 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:48:36 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/21 12:49:02 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/03/01 10:07:59 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
+	if (!s2 || !s1)
+		return (0);
 	i = 0;
 	while (s1[i] && s1[i] == s2[i])
 		i++;
