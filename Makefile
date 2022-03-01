@@ -6,7 +6,7 @@
 #    By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/18 21:31:37 by ahel-mou          #+#    #+#              #
-#    Updated: 2022/02/27 16:36:56 by ahel-mou         ###   ########.fr        #
+#    Updated: 2022/03/01 14:10:08 by ahel-mou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,11 @@ SRC_mini = minishell.c\
 			./exec/find_path.c\
 			./exec/home_made_cmd.c\
 			./exec/free_mem.c\
-			./exec/pipex.c\
+			./exec/pipe.c\
 #----------------------------------> Parsing
 SRC_parser = ./parsing/handle_input.c\
 				./parsing/parsing_utils.c
+				./parsing/pipe_parsing.c\
 
 #----------------------------------> commands src files
 SRC_commands = ./commands/ft_cd.c\
@@ -45,7 +46,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(HEADER)
 		cd libft && make
 		$(CC) $(FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
-		clear && ./$(NAME)
+		clear && make clean && ./$(NAME) 
 
 clean:
 	find . -name "*.o" -delete
