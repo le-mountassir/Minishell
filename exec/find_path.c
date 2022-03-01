@@ -6,37 +6,35 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:54:40 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/02/25 17:43:54 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/03/01 10:31:55 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
 
-/* 
-	checks if the user input is a command that exist in one the paths int the PATH var
-*/
-char	*find_path(char *command)
+char	*find_path(char *cmd)
 {
 	char	**paths;
-	char	*cmd;
 	char	*path;
-	
-	paths = ft_split(getenv("PATH"), ':'); 
-	//splits the PATH var into multiple paths so we can check if that command exist in one of them
-	
-	cmd = ft_strjoin("/", command); // joins the user input with a '/' so we can join it with one of the paths
-	// and check if that cmd exist in the path[i]
-	while (*paths)
+	int		i;
+	char	*part_path;
+
+	i = 0;
+	paths = ft_split(getenv("PATH"), ':');
+	while (paths[i])
 	{
-		path = ft_strjoin(*paths, cmd);
-		if (!path)
-			return (NULL);
-		if (!access(path, F_OK)) // checks if the command exist in the current path if yes it breaks the loop and returns the path
-			break ;
+		part_path = ft_strjoin(paths[i], "/");
+		path = ft_strjoin(part_path, cmd);
+		free(part_path);
+		if (access(path, F_OK) == 0)
+			return (path);
 		free(path);
-		paths++;
+		i++;
 	}
-	free(cmd);
-	return (path);
-}
+	i = -1;
+	while (paths[++i])
+		free(paths[i]);
+	free(paths);
+	return (0);
+}	
