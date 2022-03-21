@@ -6,61 +6,65 @@
 #    By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 16:25:49 by ahel-mou          #+#    #+#              #
-#    Updated: 2022/03/14 18:08:27 by ahel-mou         ###   ########.fr        #
+#    Updated: 2022/03/21 13:55:55 by ahel-mou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -lreadline
+FLAGS = -Wall -Wextra -Werror 
 
-RL_DIR = $(addprefix $(shell brew --prefix readline), /)
+# -I
+RL_INCLUDE = $(addprefix $(shell brew --prefix readline), /include)
+# -L
+RL_LIB = $(addprefix $(shell brew --prefix readline), /lib)
 LIB = minishell.h
-RL = $(addprefix $(RL_DIR), $(LIB))
 
-PARSER=	./src/parser/ft_split_utils.c \
-		./src/parser/parse_cmd.c \
-		./src/parser/check_quotes.c \
-		./src/parser/split_rl_return.c \
-		./src/parser/split_cmd_args.c \
-		./src/parser/vars_lastretval.c \
+PARSER=	./parser/parse_cmd.c \
+		./parser/check_quotes.c \
+		./parser/split_rl_return.c \
+		./parser/split_cmd_args.c \
+		./parser/vars_lastretval.c \
 
 EXEC =	./main.c \
-		./src/exec/redirect_fds.c \
-		./src/exec/pipe_line.c \
-		./src/exec/pipe_utils_1.c \
-		./src/exec/pipe_utils_2.c \
-		./src/exec/here_doc.c \
-		./src/exec/start_shell.c \
+		./exec/redirect_fds.c \
+		./exec/execution.c \
+		./exec/here_doc.c \
+		./exec/start_shell.c \
 		
 
-HOME_MADE =	./src/our_cmds/cd_cmd.c \
-			./src/our_cmds/cd_tilde.c \
-			./src/our_cmds/exit_cmd.c \
-			./src/our_cmds/unset_cmd.c \
-			./src/our_cmds/env_var_utils.c \
-			./src/our_cmds/sort_env_var.c \
-			./src/our_cmds/export_cmd/export_cmd.c \
-			./src/our_cmds/export_cmd/export_utils.c \
-			./src/our_cmds/export_cmd/split_export_cmd.c \
+HOME_MADE =	./our_cmds/cd_cmd.c \
+			./our_cmds/cd_tilde.c \
+			./our_cmds/exit_cmd.c \
+			./our_cmds/unset_cmd.c \
+			./our_cmds/echo_cmd.c\
+			./our_cmds/env_var_utils.c \
+			./our_cmds/sort_env_var.c \
+			./our_cmds/export_cmd/export_cmd.c \
+			./our_cmds/export_cmd/export_utils.c \
+			./our_cmds/export_cmd/split_export_cmd.c \
 		
-UTILS=	./src/utils/free_exit.c \
-		./src/utils/reset.c \
-		./src/utils/errors_handler.c \
-		./src/utils/init_structures.c \
-		./src/utils/str_utils.c \
-		./src/utils/set_shell_levels.c \
-		./src/utils/signals_handler.c \
+UTILS=	./utils/free_exit.c \
+		./utils/reset.c \
+		./utils/errors_handler.c \
+		./utils/init_structures.c \
+		./utils/utils_1.c \
+		./utils/utils_2.c \
+		./utils/utils_3.c \
+
 		
 
 OBJ = $(EXEC:.c=.o) $(PARSER:.c=.o) $(HOME_MADE:.c=.o) $(UTILS:.c=.o)
 
-$(NAME): $(OBJ)
-		echo -e "\033[0;33m"
-		cd libft && make re
-		$(CC) $(FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 
+$(NAME): $(OBJ)
+		cd libft && make re
+		$(CC) $(FLAGS) $(OBJ) -L $(RL_LIB) -lreadline ./libft/libft.a -o $(NAME)
+
+%.o:%.c minishell.h
+	$(CC) $(FLAGS) -c $< -o $@ -I $(RL_INCLUDE)
+	
 all: $(NAME)
 
 clean:
@@ -68,6 +72,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f ./libft/libft.a
 
 re:	fclean all
 
