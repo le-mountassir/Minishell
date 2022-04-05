@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset.c                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 16:28:55 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 10:52:17 by ahel-mou         ###   ########.fr       */
+/*   Created: 2022/03/22 10:55:49 by ahel-mou          #+#    #+#             */
+/*   Updated: 2022/03/22 10:55:50 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	remove_redir(char **cmd, int i)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if (cmd[i])
+	size_t	i;
+	size_t	count;
+
+	i = 0;
+	count = 0;
+	if (!dst || !src)
+		return (0);
+	while (src[count])
+		count++;
+	if (size == 0)
+		return (count);
+	while (src[i] && i < (size - 1))
 	{
-		free(cmd[i]);
-		cmd[i] = NULL;
+		dst[i] = src[i];
+		i++;
 	}
-}
-
-void	reset_shell(t_shell *s)
-{
-	s->input_error = 0;
-	s->cmdnotfound = 0;
-	s->file.input_fd = 0;
-	s->file.outfile = 0;
-	s->file.stopword = 0;
-	s->file.over_write = 0;
-	s->file.append_f = 0;
-	s->file.input = 0;
-	s->file.here_doc = 0;
+	dst[i] = '\0';
+	return (count);
 }

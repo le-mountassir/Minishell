@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_tilde.c                                         :+:      :+:    :+:   */
+/*   cd_dash.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:49 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/24 13:37:24 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:11:28 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 /* handles the directory changes */
 
-static void	change_dir(t_shell *shell, char *old_pwd, char *new_pwd)
+static void	change_dir(t_shell *shell, char *new_pwd)
 {
+	char	old_pwd[9999];
+
+	getcwd(old_pwd, 9999);
 	if (!chdir(new_pwd))
 	{
-		if (get_envar_value(shell, "OLDPWD"))
-			change_var_value(shell, "OLDPWD", old_pwd);
+		if (!change_var_value(shell, "OLDPWD", old_pwd))
+			return (ft_putstr_fd("cd :OLDPWD not set\n", 2));
 		if (!change_var_value(shell, "PWD", new_pwd))
-			exit(1);
+			return (ft_putstr_fd("cd :PWD not set\n", 2));
 	}
 	else
-		ft_putstr_fd("'cd -' error\n", 2);
+		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 }
 
 // cd -
-void	tilde_handler(t_shell *shell)
+void	dash_handler(t_shell *shell)
 {
-	char	*cur_pwd;
 	char	*old_pwd;
 
-	cur_pwd = getcwd(NULL, 0);
 	old_pwd = get_envar_value(shell, "OLDPWD");
-	if (!old_pwd)
-		ft_putstr_fd("cd : OLDPWD not found\n", 2);
-	change_dir(shell, cur_pwd, old_pwd);
+	change_dir(shell, old_pwd);
+	free(old_pwd);
 }

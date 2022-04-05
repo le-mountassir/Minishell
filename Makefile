@@ -6,7 +6,7 @@
 #    By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 16:25:49 by ahel-mou          #+#    #+#              #
-#    Updated: 2022/03/28 10:56:32 by ahel-mou         ###   ########.fr        #
+#    Updated: 2022/04/03 14:23:00 by ahel-mou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,10 @@ EXEC =	./main.c \
 		
 
 HOME_MADE =	./our_cmds/cd_cmd.c \
-			./our_cmds/cd_tilde.c \
+			./our_cmds/cd_dash.c \
 			./our_cmds/exit_cmd.c \
 			./our_cmds/unset_cmd.c \
 			./our_cmds/echo_cmd.c\
-			./our_cmds/sort_env_var.c \
 			./our_cmds/export_cmd/export_cmd.c \
 			./our_cmds/export_cmd/export_utils.c \
 			./our_cmds/export_cmd/split_export_cmd.c \
@@ -53,7 +52,7 @@ UTILS=	./utils/free_exit.c \
 		./utils/utils_1.c \
 		./utils/utils_2.c \
 		./utils/utils_3.c \
-
+		./utils/sort_env_var.c\
 		
 
 OBJ = $(EXEC:.c=.o) $(PARSER:.c=.o) $(HOME_MADE:.c=.o) $(UTILS:.c=.o)

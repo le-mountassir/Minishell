@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 16:28:55 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 10:52:17 by ahel-mou         ###   ########.fr       */
+/*   Created: 2022/03/22 10:55:39 by ahel-mou          #+#    #+#             */
+/*   Updated: 2022/03/24 15:39:09 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	remove_redir(char **cmd, int i)
+char	*ft_strdup(const char *src)
 {
-	if (cmd[i])
+	int		i;
+	int		len;
+	char	*dup;
+
+	i = 0;
+	len = (int)ft_strlen(src);
+	dup = (char *)malloc(sizeof(*src) * (len + 1));
+	if (!dup)
+		return (NULL);
+	while (src[i])
 	{
-		free(cmd[i]);
-		cmd[i] = NULL;
+		dup[i] = src[i];
+		i++;
 	}
-}
-
-void	reset_shell(t_shell *s)
-{
-	s->input_error = 0;
-	s->cmdnotfound = 0;
-	s->file.input_fd = 0;
-	s->file.outfile = 0;
-	s->file.stopword = 0;
-	s->file.over_write = 0;
-	s->file.append_f = 0;
-	s->file.input = 0;
-	s->file.here_doc = 0;
+	dup[i] = '\0';
+	return (dup);
 }

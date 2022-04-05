@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 15:00:48 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/28 12:27:43 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:56:35 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ static int	is_executable(t_shell *s, char *cmd)
 // returnb 0 if the command exist wjich means its executable
 int	not_executable_cmd(t_shell *s, char *cmd)
 {
-	if (starts_with("exit", cmd) || starts_with("unset", cmd))
-		return (1);
-	if (starts_with("export", cmd) || starts_with("env", cmd)
-		|| starts_with("pwd", cmd) || starts_with("echo", cmd))
+	if (!ft_strcmp("exit", cmd) || !ft_strcmp("unset", cmd)
+		|| !ft_strcmp("export", cmd) || !ft_strcmp("env", cmd)
+		|| !ft_strcmp("pwd", cmd) || !ft_strcmp("echo", cmd))
 		return (0);
 	if ((!cmd || !(access(cmd, X_OK))) && !s->var)
 		return (0);

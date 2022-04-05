@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:28:50 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/28 15:09:46 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:26:03 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,6 @@ void	str_replace(char **dst, char *src)
 	free(src);
 }
 
-void	swap_file(t_shell *s, char **file, char **arg, int f_name)
-{
-	int	fd;
-
-	if (*file)
-	{
-		fd = open(*file, O_CREAT | O_RDWR, 0777);
-		if (fd < 0)
-			ft_exit(s, "File not created");
-		free(*file);
-	}
-	*file = ft_strdup(arg[f_name]);
-	if (!*file)
-		exit(1);
-}
-
 int	dbquote_check(char *cmd, int i, int quote)
 {
 	if ((cmd[i] == '"' || cmd[i] == '\\') && cmd[i - 1] == '\\')
@@ -84,4 +68,15 @@ int	check_pipe_error(char *str, int i)
 	if (tr)
 		return (0);
 	return (1);
+}
+
+int	found_redir(char *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd[++i])
+		if (cmd[i] == '>')
+			return (1);
+	return (0);
 }

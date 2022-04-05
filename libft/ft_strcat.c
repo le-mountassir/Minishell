@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset.c                                            :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 16:28:55 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 10:52:17 by ahel-mou         ###   ########.fr       */
+/*   Created: 2022/03/21 17:47:02 by ahel-mou          #+#    #+#             */
+/*   Updated: 2022/03/21 17:47:03 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	remove_redir(char **cmd, int i)
-{
-	if (cmd[i])
-	{
-		free(cmd[i]);
-		cmd[i] = NULL;
-	}
-}
+/*
+* normally it would return srclen + dstlen, 
+* function has been modified to return src length only
+*/
 
-void	reset_shell(t_shell *s)
+char	*ft_strcat(char *dst, const char *src, int k)
 {
-	s->input_error = 0;
-	s->cmdnotfound = 0;
-	s->file.input_fd = 0;
-	s->file.outfile = 0;
-	s->file.stopword = 0;
-	s->file.over_write = 0;
-	s->file.append_f = 0;
-	s->file.input = 0;
-	s->file.here_doc = 0;
+	size_t	j;
+
+	j = 0;
+	while (dst[k] && src[j])
+		dst[k++] = src[j++];
+	dst[k] = '\0';
+	return (dst);
 }

@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
+/*   By: ahel-mou <ahel-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 16:12:45 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/18 16:12:46 by ahel-mou         ###   ########.fr       */
+/*   Created: 2021/11/01 16:22:03 by ahel-mou          #+#    #+#             */
+/*   Updated: 2021/11/02 15:04:09 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_intlen(long x)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int		len;
-	long	tmp;
+	char	*str;
+	size_t	i;
 
-	len = 0;
-	tmp = x;
-	if (x == 0)
-		return (++len);
-	while (tmp)
+	i = 0;
+	str = s;
+	while (i < n)
 	{
-		tmp /= 10;
-		len++;
+		str[i] = c;
+		i++;
 	}
-	if (x < 0)
-		len++;
-	return (len);
+	return (s);
 }

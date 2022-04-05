@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:48:38 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/23 10:59:58 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:36:14 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,34 +58,25 @@ static void	refill_our_env(t_shell *shell, char *str, char **tmp)
 	shell->our_env[i] = NULL;
 }
 
-/* mallocs the new environment table and calls the refill_our_env function */
-
-static void	unset(t_shell *shell, char *str)
+// /* mallocs the new environment table and calls the refill_our_env function */
+// the command unset removes a specefic var from the envirement
+void	unset_cmd(t_shell *shell, char **cmd)
 {
 	int		i;
+	int		env_size;
 	char	**tmp;
 
-	if (not_env_var(shell, str))
-		return ;
-	i = td_arr_len(shell->our_env);
-	tmp = malloc(sizeof(char *) * i);
-	if (!tmp)
-		exit(1);
-	refill_our_env(shell, str, tmp);
-	free_arr(tmp);
-}
-
-// prepares the arguments for the unset function
-// the command unset removes a specefic var from the envirement
-// i starts from 1 to skip the unset command line:88
-void	unset_cmd(t_shell *shell)
-{
-	int		i;
-	char	**str;
-
 	i = 0;
-	str = ft_split(shell->cmd[0], ' ');
-	while (str[++i])
-		unset(shell, str[i]);
-	free_arr(str);
+	env_size = td_arr_len(shell->our_env);
+	tmp = malloc(sizeof(char *) * env_size);
+	if (!tmp)
+		return ;
+	while (cmd[++i])
+	{
+		check_quotes(shell, cmd, i);
+		if (not_env_var(shell, cmd[i]))
+			break ;
+		refill_our_env(shell, cmd[i], tmp);
+	}
+	free_arr(tmp);
 }

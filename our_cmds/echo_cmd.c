@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:16:03 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/29 17:14:41 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:51:15 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // we used strlcat so we can get an index on where it stopped joining
 // we skip the dollar signe line: 23
-static int	var_2_value(t_shell *s, int *i, char *cmd, char *text)
+int	var_2_value(t_shell *s, int *i, char *cmd, char *text)
 {
 	int		k;
 	char	*var;
@@ -22,7 +22,7 @@ static int	var_2_value(t_shell *s, int *i, char *cmd, char *text)
 	k = 0;
 	(*i)++;
 	var = get_dollar_value(s, cmd, i);
-	k = ft_strlcat(text, var, ft_strlen(text) + ft_strlen(var));
+	k = ft_strlcat(text, var, ft_strlen(text) + ft_strlen(var) + 1);
 	ft_free(var);
 	(*i)++;
 	return (k);
@@ -50,7 +50,8 @@ static void	dbq_handler(t_shell *s, t_echo *e_vars)
 		{
 			e_vars->i += 2;
 			e_vars->tmp = ft_itoa(s->cmdretval);
-			e_vars->k = ft_strlcat(e_vars->txt, e_vars->tmp, 10);
+			e_vars->k = ft_strlcat(e_vars->txt, e_vars->tmp,
+					ft_strlen(e_vars->txt) + 12);
 		}
 		else if (is_dollar(e_vars->cmd, e_vars->i))
 			e_vars->k = var_2_value(s, &(e_vars->i),
@@ -96,7 +97,7 @@ void	echo_cmd(t_shell *s, char **parsed_cmd, char *cmd)
 	e_vars.i = 1;
 	e_vars.k = 0;
 	e_vars.n_line = 0;
-	e_vars.txt = malloc(ft_strlen(cmd) + 9999);
+	e_vars.txt = malloc(ft_strlen(cmd) + 99999);
 	e_vars.cmd = cmd;
 	if (td_arr_len(parsed_cmd) == 1)
 		write(1, "\n", 1);

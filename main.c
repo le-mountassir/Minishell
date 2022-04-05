@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:28:13 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 11:30:52 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:24:18 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	handle_sigint(int sig)
 {
-	if (sig == SIGINT && g_cld_proc != 0)
-	{
-		kill(g_cld_proc, SIGCONT);
-		write(1, "\n", 1);
-	}
-	else if (sig == SIGINT && g_cld_proc == 0)
+	if (sig == SIGINT && g_cld_proc == 0)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
@@ -30,12 +25,7 @@ void	handle_sigint(int sig)
 
 void	handle_sigquit(int sig)
 {
-	if (sig == SIGQUIT && g_cld_proc != 0)
-	{
-		if (!kill(g_cld_proc, SIGCONT))
-			ft_putstr_fd("Quitting\n", 1);
-	}
-	else if (sig == SIGQUIT && g_cld_proc == 0)
+	if (sig == SIGQUIT && g_cld_proc == 0)
 	{
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -43,10 +33,9 @@ void	handle_sigquit(int sig)
 	}
 }
 
-static int	clean_input(t_shell *shell)
+static int	clean_input(t_shell *shell, char **v, int i)
 {
-	int	i;
-
+	v = NULL;
 	i = 0;
 	if (shell->input_error)
 		return (0);
@@ -56,7 +45,10 @@ static int	clean_input(t_shell *shell)
 		&& (white_spaces(shell->cmd[0][i]) || shell->cmd[0][i] == '\n'))
 	i++;
 	if (shell->cmd[0][i] == '\0')
+	{
+		free(shell->cmd[0]);
 		return (0);
+	}
 	return (1);
 }
 
@@ -66,22 +58,24 @@ int	main(int c, char **v, char **env)
 	t_shell	shell;
 	char	*rl_return;
 
-	v = NULL;
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, handle_sigquit);
-	if (c > 1)
-		return (printf("no need for arguments\n"));
 	init_structure(&shell, env);
 	shell_levels(&shell);
 	while (1)
 	{
 		rl_return = readline("Minishell_$:");
 		if (!rl_return)
-			exit(1);
+			exit (1);
+		if (!rl_return[0])
+		{
+			free(rl_return);
+			continue ;
+		}
 		add_history(rl_return);
 		reinit_structure(&shell);
 		split_commands(&shell, rl_return);
-		if (clean_input(&shell))
+		if (clean_input(&shell, v, c))
 			start_shell(&shell);
 	}
 	free_struct(&shell);

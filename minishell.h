@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:33:06 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/29 14:30:48 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:28:41 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,11 @@ void	check_quotes(t_shell *s, char **arg, int i);
 
 //---------------------------------------------------Home made commands
 void	exit_cmd(t_shell *shell, char **cmd);
-void	cd_cmd(t_shell *shell);
-void	tilde_handler(t_shell *shell); // handle the 'cd -'
+void	cd_cmd(t_shell *shell, char **cmd);
+void	dash_handler(t_shell *shell); // handle the 'cd -'
 void	display_export(t_shell *shell);
-void	unset_cmd(t_shell *shell);
-void	export_cmd(t_shell *shell, int i, int j);
+void	unset_cmd(t_shell *shell, char **cmd);
+void	export_cmd(t_shell *shell);
 //split the command export into multipl words ||"cmd" "name"="args"|| ..
 char	**split_export_cmd(char const *str);
 int		is_dollar(char *s, int i);
@@ -123,7 +123,7 @@ void	echo_cmd(t_shell *s, char **parsed_cmd, char *original_cmd);
 //-----------------------------------------------------------exec
 void	start_shell(t_shell *s); //pre_executing part
 void	execution(t_shell *s); // execution
-void	exec_cmd(t_shell *shell, int j, int check);
+void	exec_cmd(t_shell *shell, int j);
 // checks id there is only a heredoc without a cmd after it
 int		only_hrdoc_with_nocmd(t_shell *s);
 // checks if the command is executable
@@ -161,7 +161,6 @@ void	remove_redir(char **s, int i);
 // replace str in dst with src we use it to replace variable with the value 
 // -->and remove quotes while parsing
 void	str_replace(char **dst, char *src);
-void	swap_file(t_shell *s, char **file, char **arg, int i);
 void	free_arr(char **array);
 void	free_redir(t_shell *s);
 int		starts_with(char *s1, char *s2);
@@ -174,7 +173,8 @@ void	switch_pipe(t_shell *shell, int *curr_pipe);
 void	make_our_env(t_shell *shell);
 int		check_pipe_error(char *str, int i);
 void	skip_to_option(char *cmd, t_echo *e_vars, char **parse_cmd);
-
+int		found_redir(char *cmd);
+int		var_2_value(t_shell *s, int *i, char *cmd, char *text);
 //----------------------------------------------------------ERRORS
 // exit and display error annd it call free struct
 int		ft_exit(t_shell *shell, char *err);

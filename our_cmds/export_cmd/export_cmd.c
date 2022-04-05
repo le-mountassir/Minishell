@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:48:19 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 18:11:27 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:28:34 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 static int	valid_export(char *str, int i)
 {
-	if (!ft_strchr(str, '='))
-		return (0);
 	if (!ft_isalpha(str[i]) && !(str[i] == '_'))
-	{
-		printf("not a valid character\n");
 		return (0);
-	}
 	return (1);
 }
 
@@ -68,11 +63,15 @@ static void	set_value_or_newvar(t_shell *shell, char *arg,
 
 // 'i' is the place where we found '='
 //line:93
-void	export_cmd(t_shell *shell, int i, int j)
+void	export_cmd(t_shell *shell)
 {
 	char	*var_name;
 	char	**export_cmd;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 1;
 	export_cmd = split_export_cmd(shell->cmd[0]);
 	while (export_cmd[j])
 	{

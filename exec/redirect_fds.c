@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:14 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/28 11:01:34 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:26:25 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void	redir_output(t_shell *s)
 {
 	if (s->file.over_write)
 		s->file.fdout = open(s->file.outfile,
-				O_CREAT | O_RDWR | O_TRUNC, 0644);
+				O_CREAT | O_RDWR | O_TRUNC, 0777);
 	else if (s->file.append_f)
 		s->file.fdout = open(s->file.outfile,
-				O_CREAT | O_RDWR | O_APPEND, 0644);
+				O_CREAT | O_RDWR | O_APPEND, 0777);
 	if (s->file.fdout < 0)
 		bash_error_w_filename(s, s->file.outfile);
 	ft_free(s->file.outfile);

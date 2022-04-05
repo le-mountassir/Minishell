@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:00 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/27 15:17:41 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:29:38 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,19 @@ static void	get_child_exit_status(t_shell *s, int status)
 // j stats from 1 to skip the cmd and go to the args
 static void	check_homemade_cmds(t_shell *shell)
 {
-	int		i;
-	int		j;
 	char	**cmd;
 
-	i = 0;
-	j = 1;
 	cmd = ft_split(shell->cmd[0], ' ');
 	if (!cmd)
 		return ;
-	cd_cmd(shell);
+	if (cmd[0])
+		check_quotes(shell, cmd, 0);
+	cd_cmd(shell, cmd);
 	if (!ft_strcmp("unset", cmd[0]))
-		unset_cmd(shell);
+		unset_cmd(shell, cmd);
 	else if (!ft_strcmp("export", cmd[0])
-		&& td_arr_len(cmd) > 1)
-		export_cmd(shell, i, j);
+		&& td_arr_len(cmd) > 1 && !found_redir(shell->cmd[0]))
+		export_cmd(shell);
 	else if (!ft_strcmp("exit", cmd[0]))
 		exit_cmd(shell, cmd);
 	else

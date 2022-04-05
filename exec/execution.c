@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:27 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/29 11:18:58 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:29:05 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,13 @@ static void	dup_stdinout(t_shell *shell)
 static void	cmd_execution(t_shell *shell, int i, int *pipe_fd)
 {
 	int		j;
-	int		check;
 
-	check = 1;
 	j = -1;
 	get_fds(shell, i, pipe_fd);
 	dup_stdinout(shell);
 	if (home_made(shell, i))
-		check = 0;
-	exec_cmd(shell, j, check);
-	if (!shell->cmdnotfound && shell->cmd_with_args[0] && check)
-		ft_putstr_fd("File not executable\n", 2);
+		exit(0);
+	exec_cmd(shell, j);
 	close(shell->file.fdin);
 	close(shell->file.fdout);
 	usleep(100);

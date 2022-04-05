@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 16:28:55 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 10:52:17 by ahel-mou         ###   ########.fr       */
+/*   Created: 2021/11/04 16:10:18 by ahel-mou          #+#    #+#             */
+/*   Updated: 2022/03/22 14:55:19 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-void	remove_redir(char **cmd, int i)
+static void	ft_putchar_fd(char cara, int fd)
 {
-	if (cmd[i])
-	{
-		free(cmd[i]);
-		cmd[i] = NULL;
-	}
+	write(fd, &cara, 1);
 }
 
-void	reset_shell(t_shell *s)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	s->input_error = 0;
-	s->cmdnotfound = 0;
-	s->file.input_fd = 0;
-	s->file.outfile = 0;
-	s->file.stopword = 0;
-	s->file.over_write = 0;
-	s->file.append_f = 0;
-	s->file.input = 0;
-	s->file.here_doc = 0;
+	long	i;
+
+	i = nb;
+	if (i < 0)
+	{
+		ft_putchar_fd('-', fd);
+		i *= -1;
+	}
+	if (i < 10)
+		ft_putchar_fd(i + '0', fd);
+	else
+	{
+		ft_putnbr_fd(i / 10, fd);
+		ft_putchar_fd(i % 10 + 48, fd);
+	}
 }

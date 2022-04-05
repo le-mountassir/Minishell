@@ -6,16 +6,32 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:31:38 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/28 15:10:41 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:03:35 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+static void	set_io_file(char **file, char **parsed_cmd, int file_idx)
+{
+	int	fd;
+
+	if (*file)
+	{
+		fd = open(*file, O_CREAT | O_RDWR, 0777);
+		if (fd < 0)
+			return (ft_putstr_fd("File not created\n", 2));
+		free(*file);
+	}
+	*file = ft_strdup(parsed_cmd[file_idx]);
+	if (!*file)
+		return (ft_putstr_fd("Error while setting file name\n", 2));
+}
+
 static int	get_output_file(t_shell *shell, char **cmd, int i, int file_idx)
 {
 	if (cmd[file_idx])
-		swap_file(shell, &shell->file.outfile, cmd, file_idx);
+		set_io_file(&shell->file.outfile, cmd, file_idx);
 	else
 		return (bash_syntax_error(shell, 0));
 	remove_redir(cmd, i);
@@ -40,9 +56,9 @@ static int	get_output_file(t_shell *shell, char **cmd, int i, int file_idx)
 static int	get_input_file(t_shell *shell, char **cmd, int i, int fname)
 {
 	if (cmd[fname] && shell->file.input)
-		swap_file(shell, &shell->file.input_fd, cmd, fname);
+		set_io_file(&shell->file.input_fd, cmd, fname);
 	else if (cmd[fname] && shell->file.here_doc)
-		swap_file(shell, &shell->file.stopword, cmd, fname);
+		set_io_file(&shell->file.stopword, cmd, fname);
 	else
 		return (bash_syntax_error(shell, 0));
 	remove_redir(cmd, i);
