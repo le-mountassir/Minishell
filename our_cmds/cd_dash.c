@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:49 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/03 15:11:28 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:11 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	change_dir(t_shell *shell, char *new_pwd)
 		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 }
 
-// cd -
 void	dash_handler(t_shell *shell)
 {
 	char	*old_pwd;

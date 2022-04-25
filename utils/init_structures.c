@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:31:29 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/28 11:01:28 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:15:12 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	init_fileredir(t_shell *struc)
 	struc->file.outfile = 0;
 }
 
-// create a copy of the env and store it in the struct
 static void	init_our_env(t_shell *shell, char **env)
 {
 	int		i;
@@ -73,7 +72,6 @@ static void	init_our_env(t_shell *shell, char **env)
 		sort_env(shell);
 }
 
-// Init all the vars in the struct to null or 0
 void	init_structure(t_shell *struc, char **env)
 {
 	struc->our_env = 0;

@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:27 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/03 15:29:05 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:44 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ static void	dup_stdinout(t_shell *shell)
 	}
 }
 
-//exec is where we call execve
-// if the cmd wasnt executed and the !cmdnotfound it means line:83
-// -->that there is a file but we cant execute it.
 static void	cmd_execution(t_shell *shell, int i, int *pipe_fd)
 {
 	int		j;
@@ -72,11 +69,6 @@ static void	start_processing(t_shell *shell, int i, int *pipe_fd)
 		parent_process(shell, i, pipe_fd);
 }
 
-// here we check if the command is pipeabloe or not
-// --> means that we can pass its output to the next cmd
-// --> heredoc with no command after it is not pipeable
-// split the cmd to a 2d_rr with its cmd_with_argss line:128
-		// signal(SIGQUIT, handle_sigquit); f loop
 void	execution(t_shell *shell)
 {
 	int		pipe_fd[2];

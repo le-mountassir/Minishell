@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:30:10 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 17:07:11 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:16:55 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static char	**free_tdr(char **arr)
 	return (0);
 }
 
-// here we copy everything between the quotes
-//line:47
 static char	*split_cmd_to_words(const char *cmd, int *i)
 {
 	char	quote;
@@ -54,8 +52,6 @@ static char	*split_cmd_to_words(const char *cmd, int *i)
 	return (line);
 }
 
-// we use 'i' to keep track fin akhir mera 7bsna fl cmd
-//line :68
 static char	**fill_arr(int words, const char *cmd, char **arr)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:31:38 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/05 13:03:35 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:16:06 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static int	get_output_file(t_shell *shell, char **cmd, int i, int file_idx)
 	return (1);
 }
 
-// here we replace the redir and its arg with whats left in cmd
-//line :56
 static int	get_input_file(t_shell *shell, char **cmd, int i, int fname)
 {
 	if (cmd[fname] && shell->file.input)
@@ -103,12 +101,6 @@ static int	check_redir(t_shell *shell, char **cmd, int i, int redir)
 	return (redir);
 }
 
-// splits one command in a 2d_arr with its arguments
-//line : 106
-
-//check if theres quotes and get whats between them if there ar db_quote 
-// -->and there is a var between then it replaces the var with its value
-//line:112
 char	**parse_cmd(t_shell *shell, int j)
 {
 	int		i;
@@ -130,6 +122,3 @@ char	**parse_cmd(t_shell *shell, int j)
 	shell->single_qts = 0;
 	return (arg);
 }
-// we decriment bcs if there is a redirection we remove it 
-//-->from the arg and replace it with the stuff after it
-//line:115

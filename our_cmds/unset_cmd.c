@@ -6,14 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:48:38 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/05 14:36:14 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:27 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// checks if there is an envirement_var with the name "*var"
-// -->if not we return in unset
 static int	not_env_var(t_shell *shell, char *var)
 {
 	int	i;
@@ -27,8 +25,6 @@ static int	not_env_var(t_shell *shell, char *var)
 	return (1);
 }
 
-// here we skip the envirement_var that we want to unset 
-// -->basexcaly we just dont copy it to the new envirement line 40/48
 static void	refill_our_env(t_shell *shell, char *str, char **tmp)
 {
 	int		i;
@@ -58,8 +54,6 @@ static void	refill_our_env(t_shell *shell, char *str, char **tmp)
 	shell->our_env[i] = NULL;
 }
 
-// /* mallocs the new environment table and calls the refill_our_env function */
-// the command unset removes a specefic var from the envirement
 void	unset_cmd(t_shell *shell, char **cmd)
 {
 	int		i;

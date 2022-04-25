@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 15:00:48 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/01 13:56:35 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:15:29 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static int	is_executable(t_shell *s, char *cmd)
 	return (0);
 }
 
-// we check if the command is executable
-// returnb 0 if the command exist wjich means its executable
 int	not_executable_cmd(t_shell *s, char *cmd)
 {
 	if (!ft_strcmp("exit", cmd) || !ft_strcmp("unset", cmd)
@@ -60,7 +58,6 @@ int	is_quote(char *s, int i, int quote)
 	return (s[i] == quote && s[i - 1] != '\\');
 }
 
-// return an index of the closing quote
 int	go_next_quote(t_shell *sh, char *cmd, int i, int quote)
 {
 	i += 1;

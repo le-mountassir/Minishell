@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:48:19 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/05 14:28:34 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:16:40 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ static int	valid_export(char *str, int i)
 	return (1);
 }
 
-// here we store the value the user gave us for the variavle 
-// -->| i is where wefound '=' \\line:33
-
-// here we check if the var already exist in the env_vars \\line:37
-
-// update the var value line : 42
 static void	set_value_or_newvar(t_shell *shell, char *arg,
 	char *var_name, int i)
 {
@@ -46,23 +40,6 @@ static void	set_value_or_newvar(t_shell *shell, char *arg,
 	free(value);
 }
 
-/* prepares the variables for the expoort function 
--->or the change_var_value function if the variable already exists */
-
-// we split the command export to multiple words and store it in 2d_arr
-//line:77
-
-// we check if the characters in the variabl are valid "dont start with number"
-//line:83
-
-//look for '=' in the var_name so we can return everything before it as variable
-//line:85
-
-// we save the var name we only take first part |var_name="fgdfgdf"| 'var_name'
-//line:87
-
-// 'i' is the place where we found '='
-//line:93
 void	export_cmd(t_shell *shell)
 {
 	char	*var_name;
@@ -91,10 +68,6 @@ void	export_cmd(t_shell *shell)
 	free_arr(export_cmd);
 }
 
-// reproduces the "export" command only without args
-
-//prints the name of the env without '='
-//line:117
 void	display_export(t_shell *shell)
 {
 	int	i;

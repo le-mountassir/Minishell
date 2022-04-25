@@ -6,13 +6,11 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:31:53 by acmaghou          #+#    #+#             */
-/*   Updated: 2022/04/05 14:29:03 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:07 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-/* goes to a specific directory, example: "cd some-directory" */
 
 static void	go_to_folder(t_shell *shell, char *folder_p)
 {
@@ -34,8 +32,6 @@ static void	go_to_folder(t_shell *shell, char *folder_p)
 	}
 }
 
-// here we skip the '$' so we can get the env_var name using substr
-//line:44
 static void	variable_to_path(t_shell *shell, char *option)
 {
 	char	*var_name;
@@ -51,7 +47,6 @@ static void	variable_to_path(t_shell *shell, char *option)
 		free(path);
 }
 
-// goes to the home folder, example: "cd" without options
 static void	back_to_home(t_shell *shell, char *home_dir)
 {
 	char	pwd[9999];
@@ -70,7 +65,6 @@ static void	back_to_home(t_shell *shell, char *home_dir)
 	}
 }
 
-/* redirects to the right functions */
 static void	cd_redirection(t_shell *shell, char *option, char *home_dir)
 {
 	if (!option)
@@ -94,9 +88,6 @@ static void	cd_redirection(t_shell *shell, char *option, char *home_dir)
 	shell->home_made_cmd = 1;
 }
 
-/* calls the redirection function and frees everything */
-// we cant cd when there is a pipe so we skip cd
-//line:108
 void	cd_cmd(t_shell *shell, char **cmd)
 {
 	char	*home_dir;

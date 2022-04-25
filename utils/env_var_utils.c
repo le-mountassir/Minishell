@@ -6,14 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:48:46 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/24 15:58:19 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:14:49 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/* changes the value of the variable pointed to by *var to the 
-value pointed by *value */
 int	change_var_value(t_shell *shell, char *env_var, char *value)
 {
 	int	i;
@@ -51,8 +49,6 @@ char	*get_val(char *str)
 		i++;
 	return (ft_substr(str, j, i));
 }
-
-/* returns a string containing the value of the environment variable */
 
 char	*get_envar_value(t_shell *shell, char *str)
 {

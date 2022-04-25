@@ -6,17 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:30:37 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/03 14:30:10 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:37 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// if the user gave us a path we will execute it here line:24
-// --> and no need to join the cmd with the PATH.
-
-// if he gave us cmd we loop through the paths line:26/34
-// -->and join them with the cmd and exec.
 void	exec_cmd(t_shell *shell, int j)
 {
 	char	*cmd;

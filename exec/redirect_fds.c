@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:14 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/30 13:26:25 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:54 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static void	switch_pipefds(int *fd, int new_fd, int REDIR)
 		close(new_fd);
 }
 
-// checks if there isa a redir if yes we change the fds
-// i == 0 it means theres no pipe before
 void	get_fds(t_shell *s, int i, int *pipe_fd)
 {
 	close(pipe_fd[READ]);

@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:48:32 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/23 17:06:28 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:15:22 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	is_sorted(char *s1, char *s2)
 	return (1);
 }
 
-/* returns 1 if the env table is alphabetically sorted, 0 if it isn't */
 static int	sorted(t_shell *shell)
 {
 	int	i;
@@ -58,7 +57,6 @@ static void	swap_unsorted(t_shell *shell, int j)
 	free(tmp);
 }
 
-/* alphabetically sorts the environ array */
 void	sort_env(t_shell *shell)
 {
 	int		i;

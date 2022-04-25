@@ -6,17 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:48:11 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 18:11:50 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:16:51 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-/* returns the line at which the new environment variable should be placed */
-
-// when the new_var is sorted we return the index 
-// -->of the place where we should put it
-//line:26
 static int	new_var_placement(t_shell *shell, char *new_var)
 {
 	int	i;
@@ -39,8 +34,6 @@ static void	alphalloc(char **tmp, char *str, int j, int *alpha)
 		exit(1);
 	ft_strlcpy(tmp[j], str, ft_strlen(str) + 1);
 }
-
-/* iterates through the environment table and assigns the right values */
 
 static void	assign(t_shell *shell, char *new_var, char **tmp)
 {
@@ -70,9 +63,6 @@ static void	assign(t_shell *shell, char *new_var, char **tmp)
 		alphalloc(tmp, new_var, j, &alpha);
 }
 
-// here we allocat a new env_vars bcs we want to add a new one
-// we allocat a tmp_env_vars + 1 new var + NULL
-//line:82
 void	assign_new_var(t_shell *shell, char *arg)
 {
 	int		i;
@@ -96,5 +86,3 @@ void	assign_new_var(t_shell *shell, char *arg)
 	}
 	free_arr(tmp);
 }
-
-// the enset cmd remove the var u want from the envirement vars

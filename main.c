@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:28:13 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/03 18:24:18 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:14:38 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static int	clean_input(t_shell *shell, char **v, int i)
 	return (1);
 }
 
-// signal(SIGQUIT, SIG_IGN); // ignores the SIGINT with SIG_IGN
 int	main(int c, char **v, char **env)
 {
 	t_shell	shell;

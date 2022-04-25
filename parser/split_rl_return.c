@@ -6,17 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:31:00 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/28 10:57:11 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:16:22 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/*
-skips all the quotes before a pipe if the number of quot % 2 == 0 and there
-it break and returns where it find the pipe 
-if the number of quotes(q) % 2 == 1 it prints error bcs a quote is not closed
-*/
 static int	skip_quotes_unti_pipe(t_shell *sh, char *rl_return,
 		int i, int quote)
 {

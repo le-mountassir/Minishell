@@ -6,14 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 14:16:03 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/04 15:51:15 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:16 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// we used strlcat so we can get an index on where it stopped joining
-// we skip the dollar signe line: 23
 int	var_2_value(t_shell *s, int *i, char *cmd, char *text)
 {
 	int		k;

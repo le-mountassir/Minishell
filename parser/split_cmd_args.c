@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:30:04 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 11:21:11 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:16:13 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	cpystr(char *cmd, char *arr, int i)
 	return (i);
 }
 
-// line:58 we skip the spaces between words
 static char	**fill_arr(int numof_words, char *cmd, char **arr)
 {
 	int	i;
@@ -69,8 +68,6 @@ static char	**fill_arr(int numof_words, char *cmd, char **arr)
 	return (arr);
 }
 
-//we skip anything between quotes, return an index of the closing quote
-// line: 87 92
 static int	word_count(t_shell *sh, char *cmd)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:31:17 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/25 17:55:46 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:15:55 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ char	*get_dollar_value(t_shell *s, char *str, int *j)
 	return (var);
 }
 
-// we used strlcat to the the var value to the string 'tmp' and 
-// -->so we can get an index on where it stopped line:62
 static void	doubleqts_content(t_shell *s, char **arg, int i)
 {
 	int		j;
@@ -78,9 +76,6 @@ static void	doubleqts_content(t_shell *s, char **arg, int i)
 	str_replace(&arg[i], tmp);
 }
 
-/*
-*This function removes single quotes from the string
-*/
 static void	singleqts_content(char **arg, int i)
 {
 	int		j;
@@ -102,8 +97,6 @@ static void	singleqts_content(char **arg, int i)
 	str_replace(&arg[i], tmp);
 }
 
-// here we get whats between the ' and replace it the 2d_arr using str_replace
-// -->line:105
 void	check_quotes(t_shell *s, char **arg, int i)
 {
 	if (arg[i][0] == '\'')

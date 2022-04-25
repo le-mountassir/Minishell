@@ -6,18 +6,11 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:29:38 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/03/26 10:55:26 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:15:01 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-/* 
-  error displays when redirections (<,<<,>>,>)
-  are not followed by a valid file, exaple echo hello > | cat myfile;
-  or when the pipe is placed in the wrong place
-  and update the return value to 2
-*/
 
 int	bash_syntax_error(t_shell *s, int err)
 {
@@ -30,11 +23,6 @@ int	bash_syntax_error(t_shell *s, int err)
 	return (0);
 }
 
-/* 
-  it prints command not found' message
-  and updates the return value to 127
-*/
-
 void	error_cmd_not_found(t_shell *s, char *cmd)
 {
 	ft_putstr_fd("bash: ", 2);
@@ -45,10 +33,6 @@ void	error_cmd_not_found(t_shell *s, char *cmd)
 	s->cmdretval = 127;
 }
 
-/* 
- bash: Filename: error' message
- */
-
 void	bash_error_w_filename(t_shell *s, char *file)
 {
 	ft_putstr_fd("bash", 2);
@@ -57,8 +41,6 @@ void	bash_error_w_filename(t_shell *s, char *file)
 	s->input_error = 1;
 	s->cmdretval = errno;
 }
-
-/* error when doublequotes or singlequotes are not closed*/
 
 void	quotes_error(t_shell *s)
 {

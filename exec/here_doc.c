@@ -6,7 +6,7 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:21 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/04 16:04:09 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:17:50 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ void	get_heredoc(t_shell *s)
 	redir_heredoc(s);
 }
 
-// checks if theres only the heredoc and 
-//no command after it bcs herdoc can execute cmds
 int	only_hrdoc_with_nocmd(t_shell *s)
 {
 	char	*word;

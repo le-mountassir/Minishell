@@ -6,15 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:32:00 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/05 14:29:38 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:18:03 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/* increment the SHLVL environment variable by*/
-//SHLVL m3natha layers dial shell shell fo9 shell
-// zdna b 1 7itach shell dialna ghnft7oh fo9 nother shell
 void	shell_levels(t_shell *shell)
 {
 	int		lvl;
@@ -31,8 +28,6 @@ void	shell_levels(t_shell *shell)
 	free(tmp);
 }
 
-// check the status that the child_p exited with
-// and asign it to cmdretval
 static void	get_child_exit_status(t_shell *s, int status)
 {
 	if (WIFEXITED(status))
@@ -43,8 +38,6 @@ static void	get_child_exit_status(t_shell *s, int status)
 		s->cmdretval = WSTOPSIG(status);
 }
 
-//the vars i and j are just for norm in export_cmd we init them here
-// j stats from 1 to skip the cmd and go to the args
 static void	check_homemade_cmds(t_shell *shell)
 {
 	char	**cmd;
@@ -71,8 +64,6 @@ static void	check_homemade_cmds(t_shell *shell)
 	free_arr(cmd);
 }
 
-// we check if the home_made_cmd is true if yes it means that there was
-//only 1 command and we executed it i previous if statement
 void	start_shell(t_shell *s)
 {
 	int	i;

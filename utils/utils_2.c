@@ -6,14 +6,12 @@
 /*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:28:50 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/01 14:26:03 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:15:35 by ahel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// katreturn lblasa fin 2strs tkhalfo we use it to check if s2 starts with s1
-// -->and return where s1 stopped in s2
 int	starts_with(char *s1, char *s2)
 {
 	int	i;
@@ -26,7 +24,6 @@ int	starts_with(char *s1, char *s2)
 	return (0);
 }
 
-// replace str in dst with src
 void	str_replace(char **dst, char *src)
 {
 	if (!src)
