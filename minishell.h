@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahel-mou <ahel-mou@1337.ma>                +#+  +:+       +#+        */
+/*   By: bel-amri <clorensunity@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:33:06 by ahel-mou          #+#    #+#             */
-/*   Updated: 2022/04/25 18:14:29 by ahel-mou         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:44:08 by bel-amri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ typedef struct shell_vars
 	int		var;
 	t_redir	file;
 }				t_shell;
+
+void	start_shell(t_shell *s);
+void	get_heredoc(t_shell *s);
+void	execution(t_shell *shell);
+void	dash_handler(t_shell *shell);
 
 int		split_commands(t_shell *shell, char *line);
 void	check_var_or_retval(t_shell *s, char **arg, int i);
